@@ -1,0 +1,14 @@
+﻿{
+  "TokenExpirationDurationInMinutes": 108000,
+  "UserNamePolicy": {
+    "AllowOnlyAlphanumericUserNames": false,
+    "RequireUniqueEmail": true
+  },
+  "PasswordPolicy": {
+    "RequiredLength": 4,
+    "RequireNonLetterOrDigit": false,
+    "RequireDigit": false,
+    "RequireLowercase": false,
+    "RequireUppercase": false
+  }
+}
