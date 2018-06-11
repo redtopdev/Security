@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RedTop.Security.OAuthService.Providers
 {
@@ -10,7 +6,7 @@ namespace RedTop.Security.OAuthService.Providers
     /// Facebook OAuth provider
     /// </summary>
     /// <seealso cref="MD.OAuthProviders.Abstract.IOauthProvider" />
-    public class FacebookProvider : IOauthProvider
+    internal class FacebookProvider : IOauthProvider
     {
         /// <summary>
         /// Authorizes the specified model.
@@ -28,7 +24,6 @@ namespace RedTop.Security.OAuthService.Providers
                     id = fb.id,
                     userName = fb.email != null ? fb.email : fb.name != null ? fb.name : fb.id
                 };
-
             }
             catch (Exception)
             {

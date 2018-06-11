@@ -1,6 +1,4 @@
-﻿
-
-namespace RedTop.Security.OAuthService.Providers
+﻿namespace RedTop.Security.OAuthService.Providers
 {
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
@@ -12,7 +10,7 @@ namespace RedTop.Security.OAuthService.Providers
     using System.Security.Claims;
     using System.Threading.Tasks;
 
-    public class ServiceOAuthProvider : OAuthAuthorizationServerProvider
+    internal class ServiceOAuthProvider : OAuthAuthorizationServerProvider
     {
         private readonly string _publicClientId;
 
@@ -91,7 +89,7 @@ namespace RedTop.Security.OAuthService.Providers
         {
             IDictionary<string, string> data = new Dictionary<string, string>
             {
-                { "userName", userName }               
+                { "userName", userName }
             };
             return new AuthenticationProperties(data);
         }

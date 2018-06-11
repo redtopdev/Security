@@ -1,6 +1,6 @@
 ﻿namespace RedTop.Security.OAuthService.Providers
 {
-    public enum ExternalProvider
+    internal enum ExternalProvider
     {
         facebook,
         google,
