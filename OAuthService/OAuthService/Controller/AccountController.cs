@@ -1,5 +1,4 @@
-﻿
-namespace RedTop.Security.OAuthService.Controllers
+﻿namespace RedTop.Security.OAuthService.Controllers
 {
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
@@ -18,7 +17,6 @@ namespace RedTop.Security.OAuthService.Controllers
     using System.Threading.Tasks;
     using System.Web.Http;
 
-
     [RoutePrefix("account")]
     public class AccountController : ApiController
     {
@@ -34,7 +32,6 @@ namespace RedTop.Security.OAuthService.Controllers
         public AccountController(
             ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
         {
-
             AccessTokenFormat = accessTokenFormat;
         }
 
@@ -50,7 +47,7 @@ namespace RedTop.Security.OAuthService.Controllers
             }
         }
 
-        // GET api/Account/UserInfo      
+        // GET api/Account/UserInfo
         [Route("userInfo")]
         [HttpGet]
         public UserInfoModel GetUserInfo()
@@ -59,7 +56,6 @@ namespace RedTop.Security.OAuthService.Controllers
             {
                 Email = User.Identity.GetUserName(),
                 UserId = User.Identity.GetUserId(),
-
             };
 
             return userInfo;
@@ -114,7 +110,6 @@ namespace RedTop.Security.OAuthService.Controllers
 
             return Ok();
         }
-
 
         // POST api/Account/RemoveLogin
         [Route("login/remove")]
@@ -172,7 +167,6 @@ namespace RedTop.Security.OAuthService.Controllers
             return Created(new Uri($"{Request.RequestUri.GetLeftPart(UriPartial.Authority)}/token"), new { Email = model.Email });
         }
 
-
         [AllowAnonymous]
         [HttpPost]
         [Route("external/register")]
@@ -186,7 +180,6 @@ namespace RedTop.Security.OAuthService.Controllers
             }
             dynamic userData = AuthorizeByExternalProvider(model, externalProvider);
 
-           
             ServiceUser user = await UserManager.FindAsync(new UserLoginInfo(model.Provider, userData.id));
 
             if (user != null || (await UserManager.FindByEmailAsync(userData.userName) != null || await UserManager.FindByNameAsync(userData.userName) != null))
@@ -233,13 +226,14 @@ namespace RedTop.Security.OAuthService.Controllers
 
         private dynamic AuthorizeByExternalProvider(ProviderAndAccessToken model, ExternalProvider externalProvider)
         {
-
             IKernel kernel = Infrastructure.DependencyResolver.GetKernel();
             IOauthProvider oauthProvider = kernel.Get<IOauthProvider>(externalProvider.ToString());
             try
             {
                 dynamic userData = oauthProvider.Authorize(model);
-                userData.userName = userData.userName.Replace(" ", "") + "@" + externalProvider.ToString() + ".com";
+                userData.userName = userData.userData.userName.Replace(" ", "");
+                if (!userData.userName.ToString().Contains("@")) //google already adds @gmail.com to returned data so this should be optional.
+                    userData.userName = userData.userName + "@" + externalProvider.ToString() + ".com";
                 return userData;
             }
             catch (Exception ex)
@@ -247,14 +241,10 @@ namespace RedTop.Security.OAuthService.Controllers
                 HttpContent contentPost = new StringContent("Facebook : " + ex.Message, Encoding.UTF8, "application/text");
                 var msg = new HttpResponseMessage(HttpStatusCode.Unauthorized)
                 {
-
                     Content = contentPost
-
                 };
                 throw new HttpResponseException(msg);
             }
-
-
         }
 
         private async Task<string> getServiceAccessToken(ServiceUser user)
@@ -330,6 +320,6 @@ namespace RedTop.Security.OAuthService.Controllers
             return null;
         }
 
-        #endregion
+        #endregion Helpers
     }
 }
