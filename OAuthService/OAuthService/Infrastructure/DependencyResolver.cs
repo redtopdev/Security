@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace RedTop.Security.OAuthService.Infrastructure
 {
-
     /// <summary>
     ///Ninject dependency resolver
     /// </summary>
@@ -39,6 +38,7 @@ namespace RedTop.Security.OAuthService.Infrastructure
         private static void AddBindings()
         {
             kernel.Bind<IOauthProvider>().To<FacebookProvider>().Named(ExternalProvider.facebook.ToString());
+            kernel.Bind<IOauthProvider>().To<GoogleProvider>().Named(ExternalProvider.google.ToString());
         }
     }
 }
