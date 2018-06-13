@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OAuthService", "OAuthService\OAuthService.csproj", "{776D2F76-563D-4AE0-A8D0-A7FBF98EB343}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OAuthServiceTestAPI", "OAuthServiceTestAPI\OAuthServiceTestAPI.csproj", "{5B48BF52-FC98-42E5-AE35-871C7D93E13E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{776D2F76-563D-4AE0-A8D0-A7FBF98EB343}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{776D2F76-563D-4AE0-A8D0-A7FBF98EB343}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{776D2F76-563D-4AE0-A8D0-A7FBF98EB343}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B48BF52-FC98-42E5-AE35-871C7D93E13E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B48BF52-FC98-42E5-AE35-871C7D93E13E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B48BF52-FC98-42E5-AE35-871C7D93E13E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B48BF52-FC98-42E5-AE35-871C7D93E13E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

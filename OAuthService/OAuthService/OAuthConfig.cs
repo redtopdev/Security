@@ -33,10 +33,10 @@ namespace RedTop.Security.OAuthService
             {
                 TokenEndpointPath = new PathString("/account/token"),
                 Provider = new ServiceOAuthProvider(PublicClientId),
-                AuthorizeEndpointPath = new PathString("/Account/ExternalLogin"),
+                AuthorizeEndpointPath = new PathString("/account/authorize"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(30),
                 // In production mode set AllowInsecureHttp = false
-                AllowInsecureHttp = false
+                AllowInsecureHttp = true
             };
 
             app.UseOAuthBearerTokens(OAuthOptions);
